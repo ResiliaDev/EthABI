@@ -11,6 +11,7 @@ module EthABI.Encode
         , dynamic_array
         , bytes
         , string
+        , Encoder
         -- , unsafeBigIntToHexStr
         -- , padRightToNearestMultipleOf32Bytes
           -- , partialEncode

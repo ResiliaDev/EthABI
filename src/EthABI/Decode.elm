@@ -11,8 +11,10 @@ module EthABI.Decode
         , uint256
         , bool
         , static_bytes
+        , bytes32
         , array
         , dynamic_array
+        , Decoder
         , partialDecodeHexstring -- TODO remove
         )
 
@@ -234,6 +236,8 @@ bool =
                     )
         )
 
+bytes32 : Decoder Bytes32
+bytes32 = static_bytes 32
 
 static_bytes : Int -> Decoder Bytes32
 static_bytes len =
