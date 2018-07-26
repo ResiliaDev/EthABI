@@ -1,4 +1,4 @@
-module EthAbi.Types.Int
+module EthABI.Types.Int
     exposing
         ( Int256
         , static_int
@@ -12,7 +12,7 @@ module EthAbi.Types.Int
         )
 
 import BigInt exposing (BigInt)
-import EthAbi.Internal exposing (ensure)
+import EthABI.Internal exposing (ensure)
 
 
 type Int256
@@ -27,7 +27,7 @@ static_int len integer =
     in
         integer
             |> ensure (appropriateLength len) ("length should be in range 0..256 and be a multiple of 8, but it is " ++ (toString len))
-            |> Result.andThen (ensure (EthAbi.Internal.integerFits (len - 1)) ("Integer too large to fit in " ++ toString len ++ " bits"))
+            |> Result.andThen (ensure (EthABI.Internal.integerFits (len - 1)) ("Integer too large to fit in " ++ toString len ++ " bits"))
             |> Result.map (Int256)
 
 

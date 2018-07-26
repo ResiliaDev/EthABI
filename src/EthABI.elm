@@ -1,4 +1,4 @@
-module EthAbi exposing (..)
+module EthABI exposing (..)
 
 import Char
 import Hex
@@ -14,15 +14,15 @@ Examples:
 
 format_output = String.toList >> List.Extra.groupsOf 64 >> (List.map (String.fromList))
 
-example1 = EthAbi.encode_args [Static (AbiUint 69), Static (AbiBool True)] |> format_output
+example1 = EthABI.encode_args [Static (AbiUint 69), Static (AbiBool True)] |> format_output
 
-example2 = EthAbi.encode_args [Static (AbiStaticBytes 3 "abc"), Static (AbiStaticBytes 3 "def")] |> format_output
+example2 = EthABI.encode_args [Static (AbiStaticBytes 3 "abc"), Static (AbiStaticBytes 3 "def")] |> format_output
 
-example3 = EthAbi.encode_args [Dynamic (AbiBytes "dave"), Static (AbiBool True), Dynamic (AbiDynamicArray [Static (AbiUint 1), Static (AbiUint 2), Static (AbiUint 3)])] |> format_output
+example3 = EthABI.encode_args [Dynamic (AbiBytes "dave"), Static (AbiBool True), Dynamic (AbiDynamicArray [Static (AbiUint 1), Static (AbiUint 2), Static (AbiUint 3)])] |> format_output
 
-dynamic_example = EthAbi.encode_args [Static (AbiUint 291), Dynamic (AbiDynamicArray [Static (AbiUint 1110), Static (AbiUint 1929)]), Static (AbiStaticBytes 10 "1234567890"), Dynamic (AbiBytes "Hello, world!")] |> format_output
+dynamic_example = EthABI.encode_args [Static (AbiUint 291), Dynamic (AbiDynamicArray [Static (AbiUint 1110), Static (AbiUint 1929)]), Static (AbiStaticBytes 10 "1234567890"), Dynamic (AbiBytes "Hello, world!")] |> format_output
 
-dynamic_example2 = EthAbi.encode_args [Dynamic (AbiDynamicArray [Dynamic (AbiDynamicArray [Static (AbiUint 1), Static (AbiUint 2)]), Dynamic (AbiDynamicArray [Static (AbiUint 3)])]), Dynamic (AbiDynamicArray [Dynamic (AbiString "one"), Dynamic (AbiString "two"), Dynamic (AbiString "three")])] |> format_output
+dynamic_example2 = EthABI.encode_args [Dynamic (AbiDynamicArray [Dynamic (AbiDynamicArray [Static (AbiUint 1), Static (AbiUint 2)]), Dynamic (AbiDynamicArray [Static (AbiUint 3)])]), Dynamic (AbiDynamicArray [Dynamic (AbiString "one"), Dynamic (AbiString "two"), Dynamic (AbiString "three")])] |> format_output
 
 -}
 type AbiType

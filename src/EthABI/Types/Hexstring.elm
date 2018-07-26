@@ -1,11 +1,11 @@
-module EthAbi.Types.Hexstring exposing(hexstring, Hexstring, toString)
+module EthABI.Types.Hexstring exposing(hexstring, Hexstring, toString)
 
 import Char
 
-import EthAbi.Internal exposing (ensure, Hexstring(..))
+import EthABI.Internal exposing (ensure, Hexstring(..))
 
 type alias Hexstring =
-    EthAbi.Internal.Hexstring
+    EthABI.Internal.Hexstring
 
 
 {-| Creates a hexadecimal string from some input string.
@@ -13,7 +13,7 @@ type alias Hexstring =
   - makes sure that it is actually hexadecimal
   - Ensures that it is actually a multiple of 32 bytes (64 hexadecimal characters), because all ABI requests and responses are this way.
 
-Do note, that the extra four bytes (8 hexchars) that are prepended to a request to represent the function signature hash mean that those requests are *not* `EthAbi.Hexstring`'s!
+Do note, that the extra four bytes (8 hexchars) that are prepended to a request to represent the function signature hash mean that those requests are *not* `EthABI.Hexstring`'s!
 
 TODO have a special data structure for function calls.
 

@@ -1,4 +1,4 @@
-module EthAbi.Types.UInt
+module EthABI.Types.UInt
     exposing
         ( UInt256
         , static_uint
@@ -12,7 +12,7 @@ module EthAbi.Types.UInt
         )
 
 import BigInt exposing (BigInt)
-import EthAbi.Internal exposing (ensure)
+import EthABI.Internal exposing (ensure)
 
 
 type UInt256
@@ -37,7 +37,7 @@ static_uint len integer =
         integer
             |> ensure (appropriateLength len) ("length should be in range 0..256 and be a multiple of 8, but it is " ++ (toString len))
             |> Result.andThen (ensure isPositive ("UInt256 called with a negative value: " ++ toString integer))
-            |> Result.andThen (ensure (EthAbi.Internal.integerFits len) ("Unsigned Integer too large to fit in " ++ toString len ++ " bits"))
+            |> Result.andThen (ensure (EthABI.Internal.integerFits len) ("Unsigned Integer too large to fit in " ++ toString len ++ " bits"))
             |> Result.map (UInt256)
 
 

@@ -1,4 +1,4 @@
-module EthAbi.Encode
+module EthABI.Encode
     exposing
         ( encode
         , int256
@@ -22,12 +22,12 @@ import Char
 import Hex
 import Result.Extra
 import List.Extra
-import EthAbi.Types.Hexstring
-import EthAbi.Types.Bytes
-import EthAbi.Types.Int exposing (Int256)
-import EthAbi.Types.UInt exposing (UInt256)
--- import EthAbi.Types exposing (hexstring, Int256, UInt256, int256ToBigInt, uint256ToBigInt, bytes)
-import EthAbi.Internal exposing (ensure, Hexstring, Bytes32(..), Bytes(..))
+import EthABI.Types.Hexstring
+import EthABI.Types.Bytes
+import EthABI.Types.Int exposing (Int256)
+import EthABI.Types.UInt exposing (UInt256)
+-- import EthABI.Types exposing (hexstring, Int256, UInt256, int256ToBigInt, uint256ToBigInt, bytes)
+import EthABI.Internal exposing (ensure, Hexstring, Bytes32(..), Bytes(..))
 
 
 -- for internal use only
@@ -49,11 +49,11 @@ type EncodedValue
     | DynamicReference Hexstring
 
 
-encode : Encoder -> EthAbi.Types.Hexstring.Hexstring
+encode : Encoder -> EthABI.Types.Hexstring.Hexstring
 encode encoder =
         encoder
             |> resolveDynamicReferences
-            |> EthAbi.Internal.Hexstring
+            |> EthABI.Internal.Hexstring
 
 resolveDynamicReferences : List EncodedValue -> String
 resolveDynamicReferences values =
@@ -159,7 +159,7 @@ append enc_a enc_b =
 uint256 : UInt256 -> Encoder
 uint256 integer =
     integer
-        |> EthAbi.Types.UInt.toBigInt
+        |> EthABI.Types.UInt.toBigInt
         |> unsafeBigInt
 
 
@@ -167,7 +167,7 @@ int256 : Int256 -> Encoder
 int256 integer =
     let
         bigint =
-            EthAbi.Types.Int.toBigInt integer
+            EthABI.Types.Int.toBigInt integer
 
         twosComplementPow =
             BigInt.pow (BigInt.fromInt 2) (BigInt.fromInt 255)
@@ -289,7 +289,7 @@ bytes (Bytes bstr) =
 string : String -> Encoder
 string str =
     str
-        |> EthAbi.Types.Bytes.fromString
+        |> EthABI.Types.Bytes.fromString
         |> bytes
 
 

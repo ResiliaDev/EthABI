@@ -1,4 +1,4 @@
-module EthAbi.Types.Bytes32
+module EthABI.Types.Bytes32
     exposing
         ( Bytes32
         , bytes
@@ -9,11 +9,11 @@ module EthAbi.Types.Bytes32
 
 import Char
 import Hex
-import EthAbi.Internal exposing (Bytes32(..), Bytes(..), ensure)
+import EthABI.Internal exposing (Bytes32(..), Bytes(..), ensure)
 
 
 type alias Bytes32 =
-    EthAbi.Internal.Bytes32
+    EthABI.Internal.Bytes32
 
 
 

@@ -1,4 +1,4 @@
-module EthAbi.Decode
+module EthABI.Decode
     exposing
         ( decodeHexstring
         , succeed
@@ -28,10 +28,10 @@ import Hex
 import List.Extra
 import Result.Extra
 import BigInt exposing (BigInt)
-import EthAbi.Types.Int exposing (Int256)
-import EthAbi.Types.UInt exposing (UInt256)
-import EthAbi.Types.Bytes32 exposing (Bytes32)
-import EthAbi.Types.Hexstring exposing (Hexstring)
+import EthABI.Types.Int exposing (Int256)
+import EthABI.Types.UInt exposing (UInt256)
+import EthABI.Types.Bytes32 exposing (Bytes32)
+import EthABI.Types.Hexstring exposing (Hexstring)
 
 
 -- Some types are Dynamic, and this propagates up through complex types
@@ -99,7 +99,7 @@ andThen fun ( modifier, decoderfun ) =
 decodeHexstring : Decoder t -> Hexstring -> Result String t
 decodeHexstring ( modifier, decoder ) hexstr =
     let
-        str = EthAbi.Types.Hexstring.toString hexstr
+        str = EthABI.Types.Hexstring.toString hexstr
         ensureValidResult result =
             case result of
                 DecodingResult result "" _ ->
@@ -181,7 +181,7 @@ int256 =
                 |> (withFirst32Bytes offset)
                     (hexToBigInt
                         >> Result.map twosComplement
-                        >> Result.andThen EthAbi.Types.Int.int256
+                        >> Result.andThen EthABI.Types.Int.int256
                     )
         )
 
@@ -193,7 +193,7 @@ uint256 =
         hexstr
             |> (withFirst32Bytes offset)
                 (hexToBigInt
-                    >> Result.andThen EthAbi.Types.UInt.uint256
+                    >> Result.andThen EthABI.Types.UInt.uint256
                 )
     )
 
@@ -243,7 +243,7 @@ static_bytes len =
             |> (withFirst32Bytes offset)
                 ((trimBytesRight len)
                     >> bytesToStr
-                    >> Result.andThen (EthAbi.Types.Bytes32.bytes len)
+                    >> Result.andThen (EthABI.Types.Bytes32.bytes len)
                 )
     )
 

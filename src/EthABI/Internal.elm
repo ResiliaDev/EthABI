@@ -1,5 +1,5 @@
-module EthAbi.Internal exposing (..)
-{-| Internal module; exposing everything to this library, but is not in the public packages, so outside of the EthAbi library its contents are not visible.
+module EthABI.Internal exposing (..)
+{-| Internal module; exposing everything to this library, but is not in the public packages, so outside of the EthABI library its contents are not visible.
 -}
 
 import BigInt exposing (BigInt)

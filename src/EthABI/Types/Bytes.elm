@@ -1,4 +1,4 @@
-module EthAbi.Types.Bytes
+module EthABI.Types.Bytes
     exposing
         ( Bytes
         , bytes
@@ -7,11 +7,11 @@ module EthAbi.Types.Bytes
 
 import Char
 import Hex
-import EthAbi.Internal exposing (Bytes32(..), Bytes(..), ensure)
+import EthABI.Internal exposing (Bytes32(..), Bytes(..), ensure)
 
 
 type alias Bytes =
-    EthAbi.Internal.Bytes
+    EthABI.Internal.Bytes
 
 
 {-| Creates a new `Bytes` object from an existing hexadecimal string that is interpretable as a byte-string:
