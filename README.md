@@ -5,7 +5,8 @@ This is an Elm implementation of the Ethereum ABI Encoding/Decoding procedures.
 
 It strives to be:
 
-- Feature complete
+- Correct, adhering to the [Solidity ABI Encoding/Decoding Specification](https://solidity.readthedocs.io/en/develop/abi-spec.html)
+- Feature complete.
 - Intuitive to use.
 - Type-safe.
 - Not care about anything else of Ethereum, or how we might talk with a Blockchain. This library handles the ABI-part only, and could be integrated in any library that needs this
