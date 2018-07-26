@@ -73,6 +73,6 @@ encoder_decoder_triple =
             , triple uint256 Encode.uint256 Decode.uint256
             , triple (Fuzz.bool |> Fuzz.map Ok) Encode.bool Decode.bool
             , triple bytes32 Encode.bytes32 Decode.bytes32
-
-            -- , triple (Fuzz.string |> Fuzz.map Ok) Decode.string
+            -- TODO: Rest of types, once built.
+            -- TODO: How to create a recursive fuzzer here, for the arrays?
             ]

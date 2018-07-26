@@ -15,14 +15,16 @@ module EthABI.Decode
         , array
         , dynamic_array
         , Decoder
-        , partialDecodeHexstring -- TODO remove
+        , partialDecodeHexstring
+          -- TODO remove
         )
 
 {-| TODO
 
 rewrite unsafeInt8 to work with BigInts instead,
 since we need offsets that might be larger than JS' numbers.
- -}
+
+-}
 
 import Char
 import Array exposing (Array)
@@ -101,7 +103,9 @@ andThen fun ( modifier, decoderfun ) =
 decodeHexstring : Decoder t -> Hexstring -> Result String t
 decodeHexstring ( modifier, decoder ) hexstr =
     let
-        str = EthABI.Types.Hexstring.toString hexstr
+        str =
+            EthABI.Types.Hexstring.toString hexstr
+
         ensureValidResult result =
             case result of
                 DecodingResult result "" _ ->
@@ -123,8 +127,8 @@ partialDecodeHexstring ( modifier, decoder ) hexstring offset =
         decoder hexstring offset
 
 
-
-{-| Used to decodeHexstring two decoders one after the other, on the same hexstring, and combine their results. -}
+{-| Used to decodeHexstring two decoders one after the other, on the same hexstring, and combine their results.
+-}
 map2 : (a -> b -> c) -> Decoder a -> Decoder b -> Decoder c
 map2 fun ( ma, da ) ( mb, db ) =
     let
@@ -201,7 +205,9 @@ uint256 =
 
 
 {-| Only to be used inside this module, inside a dynamic decoder;
-- Will trim results to fit in one int8 (in an Int),
+
+  - Will trim results to fit in one int8 (in an Int),
+
 -}
 unsafe_int8 : Decoder Int
 unsafe_int8 =
@@ -236,8 +242,11 @@ bool =
                     )
         )
 
+
 bytes32 : Decoder Bytes32
-bytes32 = static_bytes 32
+bytes32 =
+    static_bytes 32
+
 
 static_bytes : Int -> Decoder Bytes32
 static_bytes len =
@@ -245,16 +254,21 @@ static_bytes len =
     , \hexstr offset ->
         hexstr
             |> (withFirst32Bytes offset)
-                ((trimBytesRight len)
-                    >> bytesToStr
-                    >> Result.andThen (EthABI.Types.Bytes32.bytes len)
+                (\bytestr ->
+                    bytestr
+                        |> (trimBytesRight len)
+                        |> (EthABI.Types.Bytes32.bytes len)
                 )
     )
+
+
 
 -- TODO rewrite array logic to properly disambugate:
 -- 1. statically-sized arrays that are encoded in-place.
 -- 2. statically-sized arrays of dynamic elements, that are therefore encoded as a reference with an in-place block in the tail.
 -- 3. dynamically-sized arrays (that are always encoded with firsth the length followed by the elements in the tail).
+
+
 array : Int -> Decoder elem -> Decoder (Array elem)
 array len ( me, de ) =
     case me of

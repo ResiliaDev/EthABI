@@ -25,6 +25,7 @@ import Result.Extra
 import List.Extra
 import EthABI.Types.Hexstring
 import EthABI.Types.Bytes
+import EthABI.Types.Bytes32
 import EthABI.Types.Int exposing (Int256)
 import EthABI.Types.UInt exposing (UInt256)
 -- import EthABI.Types exposing (hexstring, Int256, UInt256, int256ToBigInt, uint256ToBigInt, bytes)
@@ -195,7 +196,7 @@ bytes32 bytes =
     let
         head =
             bytes
-                |> bytes32ToHex
+                |> EthABI.Types.Bytes32.toString
                 |> padRightTo32Bytes '0'
     in
         [ Normal head ]

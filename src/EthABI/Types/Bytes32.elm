@@ -5,6 +5,7 @@ module EthABI.Types.Bytes32
         , bytes1
         , bytes32
         , fromString
+        , toString
         )
 
 import Char
