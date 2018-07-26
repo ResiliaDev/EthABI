@@ -12,5 +12,23 @@ suite =
             "Encoding <-> Decoding Round-Robin"
             (\( input_str, encoded_hexstr, decoded_str ) ->
                 Expect.equal input_str decoded_str
-            )
+                 |> (Expect.onFail <|
+                 """
+                  The input string:
+                  """
+                  ++ input_str ++
+                  """
+
+                  did not match decoded output:
+                  """
+                  ++ decoded_str ++
+                  """
+
+                  The intermediate encoding was:
+                  """
+                  ++ toString encoded_hexstr ++
+                  """
+                   )
+                  """
+            ))
         ]
